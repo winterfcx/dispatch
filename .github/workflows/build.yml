@@ -13,7 +13,7 @@ jobs:
       matrix:
         platform:
           - os_name: Linux-x86_64
-            os: ubuntu-24.04
+            os: ubuntu-26.04
             target: x86_64-unknown-linux-gnu
           - os_name: Windows-x86_64
             os: windows-latest
@@ -28,18 +28,14 @@ jobs:
           - stable
           - beta
           - nightly
-    steps:
-      - uses: actions/checkout@v3
+  steps:
+    - uses: actions/checkout@v7.0.1
 
-      - name: Cache cargo & target directories
-        uses: Swatinem/rust-cache@v2
-        with:
-          key: "v2"
-
-      - name: Build
-        uses: houseabsolute/actions-rust-cross@v0
-        with:
-          command: "build"
-          target: ${{ matrix.platform.target }}
-          toolchain: ${{ matrix.toolchain }}
-          args: "--locked --release"
+    - name: Setup Rust
+      uses: actions-rust-lang/setup-rust-toolchain@v2
+      with:
+        toolchain: ${{ matrix.toolchain }}
+        target: ${{ matrix.platform.target }}
+  
+    - name: Build
+      run: cargo build --locked --release --target ${{ matrix.platform.target }}
