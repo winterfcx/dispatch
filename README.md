@@ -1,3 +1,8 @@
+TODO: 
+[ ] Get CI to attach builds
+[ ] Fix security issues
+[ ] Reduce dependencies
+
 # dispatch
 
 A SOCKS proxy that balances traffic between network interfaces.
