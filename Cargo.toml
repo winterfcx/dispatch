@@ -12,6 +12,9 @@ repository = "https://github.com/alexkirsz/dispatch"
 path = "src/main.rs"
 name = "dispatch"
 
+[build]
+warnings = "allow"
+
 [profile.release]
 debug = true
 
